@@ -24,7 +24,10 @@ class WebhooksController < ApplicationController
       case event.type
       when 'checkout.session.completed'
         session = event.data.object
-        @product = Product.find_by(price: session.amount_total)
+        line_items = Stripe::Checkout::Session.list_line_items(session.id)
+        @product = Product.find(line_items.data.description)
+        p @product
+        p line_items.data.description
         @product.increment!(:sales_count)
       end
   

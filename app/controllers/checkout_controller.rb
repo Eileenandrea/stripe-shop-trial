@@ -6,7 +6,7 @@ class CheckoutController < ApplicationController
         @session = Stripe::Checkout::Session.create({
             payment_method_types: ['card'],
             line_items: [{
-                name: @product.name,
+                name: @product.id,
                 amount: @product.price,
                 currency: 'usd',
                 quantity: 1

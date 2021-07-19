@@ -3,6 +3,5 @@ var stripe = Stripe("pk_test_51JEmcmLh8SK6X3BInCae0D1m1oPHYwBwfyrFYiPqH9mErgr9TO
 var checkoutButton = document.getElementById('checkout-button');
   stripe.redirectToCheckout({
     sessionId: '<%= @session.id %>',
-    productId: '<%=@product.id%>'
   }).then(function (result) {
   });
