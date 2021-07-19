@@ -1,13 +1,13 @@
 class CheckoutController < ApplicationController
 
     def create
-        product = Product.find(params[:id])
+        @product = Product.find(params[:id])
         Stripe.api_key = Rails.application.credentials.stripe[:secret_key]
         @session = Stripe::Checkout::Session.create({
             payment_method_types: ['card'],
             line_items: [{
-                name: product.name,
-                amount: product.price,
+                name: @product.name,
+                amount: @product.price,
                 currency: 'usd',
                 quantity: 1
             }],
