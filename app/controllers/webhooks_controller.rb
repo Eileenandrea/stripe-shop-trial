@@ -26,6 +26,7 @@ class WebhooksController < ApplicationController
         session = event.data.object
         line_items = Stripe::Checkout::Session.list_line_items(session.id)
         @product = Product.find(line_items.data.description)
+        puts "Signature logss"
         p @product
         p line_items.data.description
         @product.increment!(:sales_count)
