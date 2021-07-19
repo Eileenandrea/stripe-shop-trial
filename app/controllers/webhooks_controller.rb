@@ -28,7 +28,6 @@ class WebhooksController < ApplicationController
         @product = Product.find(line_items.data[0].description)
         puts "Signature logss"
         p @product
-        p line_items.data.description
         @product.increment!(:sales_count)
       end
   
