@@ -25,7 +25,7 @@ class WebhooksController < ApplicationController
       when 'checkout.session.completed'
         session = event.data.object
         line_items = Stripe::Checkout::Session.list_line_items(session.id)
-        @product = Product.find(line_items.data.description)
+        @product = Product.find(line_items.data[0].description)
         puts "Signature logss"
         p @product
         p line_items.data.description
